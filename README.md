@@ -51,3 +51,5 @@ once in the absolute path bash: [ crontab -e ] when it asks for an editor choose
 *NOTES* 
 in your fetcher in line titled self.watchlist you can change this to be any stocks of your choosing, this is my list and the one in the file : 
 self.watchlist = ['CRM', 'NOW', 'PLTR', 'AMZN', 'OKLO', 'BWXT', 'VST', 'BEPC', 'DLR', 'IEI', 'LQD', 'GLD', 'SCCO', 'RNMBY', 'HXSCL', 'EWY', 'INDA']
+any and all files can be edited by bashing: nano "file name" then saving. 
+you can edit the time when the email is sent by changing  the crontab (line 49) 
