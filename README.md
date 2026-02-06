@@ -26,22 +26,24 @@ google-generativeai: For accessing the Gemini API (the brain).
 requests: For general web requests.
 
 Phase 2 
-Step 1: Get FRED api key from: fred.stlouisfed.org get gemini API key from aistudio.google.com/app/apikey, get congressional API key from api.congress.gov
-  get Finnhub key from finnhub.io/register
+Step 1: Get FRED api key from: fred.stlouisfed.org get gemini API key from aistudio.google.com/app/apikey, get congressional API key from api.congress.gov get Finnhub key from finnhub.io/register
 Step 2: [ nano .env ] create environment variable inside the market_agent folder 
-Step 3: paste the following two lines into the file replacing "YOUR_FRED_KEY_HERE" with actual key and actual gemini key after the "=" sign then Ctrl+X, then Y, then Enter (saving process).
-  FRED_API_KEY=YOUR_FRED_KEY_HERE
-  GEMINI_API_KEY=
+Step 3: paste the following six lines into you .env file, put corresponding key after each "=" sign. after "EMAIL_USER" put your email, and after "EMAIL_PASSWORD" put your 16 letter "app password" from your google account, this is found in 2FA, just look it up. 
+
+FRED_API_KEY=
+GEMINI_API_KEY=
+EMAIL_USER=
+EMAIL_PASSWORD=
+CONGRESS_KEY=
+FINNHUB_KEY=
+
 Step 4: [ nano fetcher.py ] paste the code titled fetcher.py into the file then Ctrl+X, then Y, then Enter. This is the main engine, it finds all the data from the APIs
 Step 5: [ nano brain.py ] paste the code titled brain.py into the file then Ctrl+X, then Y, then Enter. This is the parser, it condenses and explains the raw data
 
 Phase 3
-Step 1: [ nano .env ] paste the following two lines, replacing email, and the sequence of 16 letters with an "app password" from google. then save/exit
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=xxxx xxxx xxxx xxxx
-Step 2: [ nano notify.py ] paste the code titled notify.py save/exit. This creates and sends the email with the info parsed by the brain 
-Step 3: [ nano main.py ] paste the code titled main.py save/exit. This is the manager of the other components 
-Step 4: Find the full path for your python executable. If you used the titles I provided the path will be [ /root/market_agent/venv/bin/python3 ] otherwise 
+Step 1: [ nano notify.py ] paste the code titled notify.py save/exit. This creates and sends the email with the info parsed by the brain 
+Step 2: [ nano main.py ] paste the code titled main.py save/exit. This is the manager of the other components 
+Step 3: Find the full path for your python executable. If you used the titles I provided the path will be [ /root/market_agent/venv/bin/python3 ] otherwise 
 bash: [ which python3 ] and [ pwd ]
 once in the absolute path bash: [ crontab -e ] when it asks for an editor choose 1 for nano, then scroll to the bottom and paste the following line 
 0 6 * * 1-5 cd /root/market_agent && /root/market_agent/venv/bin/python3 main.py >> log.txt 2>&1
